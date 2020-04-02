@@ -34,11 +34,11 @@ function BandForm({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="input-block">
-        <label htmlFor="github_username">usuário do github</label>
+        <label htmlFor="github_username">usuário do github:</label>
         <input
           name="github_username"
           id="github_username"
-          placeholder="@"
+          placeholder=""
           required
           value={github_username}
           onChange={e => setGithub_username(e.target.value)}

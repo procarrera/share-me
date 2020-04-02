@@ -6,7 +6,6 @@ import "./app.css";
 import "./sidebar.css";
 import "./main.css";
 import logoGithub from "./assets/github.png";
-import gitHublogo from "./assets/gitmark.png";
 import logo from "./assets/share.svg";
 
 import BandItem from "./components/BandItem/index";
