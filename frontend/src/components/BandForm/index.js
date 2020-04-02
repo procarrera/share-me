@@ -34,17 +34,18 @@ function BandForm({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="input-block">
-        <label htmlFor="github_username">Usuário do Github</label>
+        <label htmlFor="github_username">usuário do github</label>
         <input
           name="github_username"
           id="github_username"
+          placeholder="@"
           required
           value={github_username}
           onChange={e => setGithub_username(e.target.value)}
         />
       </div>
       <div className="input-block">
-        <label htmlFor="techs">Suas habilidades:</label>
+        <label htmlFor="techs">suas habilidades:</label>
         <textarea
           placeholder="ex: JavaScript, HTML, CSS, UX"
           name="techs"
@@ -75,7 +76,7 @@ function BandForm({ onSubmit }) {
           />
         </div>
       </div>
-      <button type="submit">Salvar</button>
+      <button type="submit">salvar</button>
     </form>
   );
 }

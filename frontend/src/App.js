@@ -48,7 +48,7 @@ function App() {
       </header>
       <div id="app">
         <aside>
-          <strong>Cadastro</strong>
+          <strong>cadastre seu perfil</strong>
           <BandForm onSubmit={handleAddBand} />
         </aside>
         <main>

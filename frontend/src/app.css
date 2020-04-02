@@ -45,7 +45,8 @@
 }
 
 #header info {
-  margin-top: -15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   font-family: "Pacifico", cursive;
   font-size: 28px;
   color: darkgray;
