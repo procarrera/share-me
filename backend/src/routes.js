@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const BandController = require("./controllers/BandController");
+const DevController = require("./controllers/DevController");
 const SearchController = require("./controllers/SearchController");
 
 const routes = Router();
@@ -11,9 +11,10 @@ routes.get("/", (req, res) => {
   res.status(301).redirect("https://share-me.now.sh/");
 });
 
-routes.get("/bands", BandController.index);
-routes.post("/bands", BandController.store);
-routes.delete("/bands/:band_name", BandController.destroy);
+routes.get("/devs", DevController.index);
+routes.post("/devs", DevController.store);
+routes.put("/devs/:dev_name", DevController.update);
+//routes.delete("/devs/:dev_name", DevController.destroy);
 
 routes.get("/search", SearchController.index);
 
