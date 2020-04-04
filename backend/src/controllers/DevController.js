@@ -8,75 +8,114 @@ module.exports = {
   async index(req, res) {
     const devs = await Dev.find();
     if (devs.length != []) {
-      return res.json(devs);
+      return res.status(202).json(devs);
     } else {
-      return res.json({ message: "No users found" });
+      return res.status(404).json({
+        message: "Oops! we couldn't load our base, please try again :(",
+      });
     }
   },
-
-  /* async destroy(req, res) {
-    await Dev.findOneAndDelete(
-      { github_username: req.params.dev_name },
-      (err, dev) => {
-        // As always, handle any potential errors:
-        if (err)
-          return res.json({
-            menssage: "This user is not registered in our records",
-            status: err,
-          });
-        const response = {
-          message: "Dev deleted with success",
-          name: req.params.band_name,
-        };
-        return res.json(response);
-      }
-    );
-  },*/
 
   async store(req, res) {
     const { github_username, techs, latitude, longitude } = req.body;
 
     let dev = await Dev.findOne({ github_username });
-    //console.log(band)
 
     if (!dev) {
-      const response = await axios.get(
-        `https://api.github.com/users/${github_username}`
-      );
+      try {
+        const response = await axios.get(
+          `https://api.github.com/users/${github_username}`
+        );
 
-      const { name = login, avatar_url, bio } = response.data;
+        const { name = login, avatar_url, bio } = response.data;
 
-      const techsArray = parseStringAsArray(techs);
+        const techsArray = parseStringAsArray(techs);
 
-      const location = {
-        type: "Point",
-        coordinates: [longitude, latitude],
-      };
+        const location = {
+          type: "Point",
+          coordinates: [longitude, latitude],
+        };
 
-      dev = await Dev.create({
-        github_username,
-        name,
-        avatar_url,
-        bio,
-        techs: techsArray,
-        location,
-      });
+        dev = await Dev.create({
+          github_username,
+          name,
+          avatar_url,
+          bio,
+          techs: techsArray,
+          location,
+        });
+        return res.status(201).json({
+          message: `Hello ${dev.name}, welcome! ;)`,
+          dev: dev,
+        });
+      } catch (error) {
+        // Error
+        if (error.response) {
+          return res.status(404).json({message: "Oops! seems this user doesn't exists - try again ;)"})
+        } else if (error.request) {
+          return res.status(500).json({message: "Oops! we couldn't connect to our server - try again ;)"})
+        } else {
+          return res.status(500)
+        }
+      }
     } else {
-      console.log("chegou aqui");
-      return res.json({
+      return res.status(200).json({
         message:
           "Oops! it seems that you are already registered in our system ;)",
       });
     }
-
-    //return res.json(dev);
-    return res.json({
-      message: `Hello ${dev.name}, welcome! ;)`,
-      dev: dev,
-    });
   },
 
   async update(req, res) {
+    const github_username = req.params.dev_name;
+
+    let dev = await Dev.findOne({ github_username });
+
+    if (dev) {
+      try {
+        const response = await axios.get(
+          `https://api.github.com/users/${github_username}`
+        );
+        const { avatar_url, bio } = response.data;
+
+        let dev_updated = await Dev.findOneAndUpdate(
+          { github_username: github_username },
+          {
+            avatar_url: avatar_url,
+            bio: bio,
+            $currentDate: { updated_at: true },
+          },
+          { new: true },
+          (err, doc) => {
+            if (err) {
+              res.status(500).json({ message: "Oops! something went wrong - try again :(" });
+            } else {
+              return doc;
+            }
+          }
+        );
+        return res.status(201).json({
+          message: "Success! your info is up to date ;)",
+          dev_updated: dev_updated,
+        });
+      } catch (error) {
+        // Error
+        if (error.response) {
+          return res.status(404)
+        } else if (error.request) {
+          return res.status(404)
+        } else {
+          return res.status(500)
+        }
+      }
+    } else {
+      return res.status(202).json({
+        message: "Oops! seems you are not registered yet :(",
+      });
+    }
+  },
+
+  /*async update(req, res) {
     const github_username = req.params.dev_name;
     console.log(`Username to find: ${github_username}`);
 
@@ -108,7 +147,7 @@ module.exports = {
         }
       );
       return res.json({
-        message: "Success! your info is up to date",
+        message: "Success! your info is up to date ;)",
         dev_updated: dev_updated,
       });
     } else {
@@ -116,5 +155,64 @@ module.exports = {
         message: "Oops! we couldn't find this user :(",
       });
     }
-  },
+  },*/
+
+  /*
+  async store(req, res) {
+    const { github_username, techs, latitude, longitude } = req.body;
+
+    let dev = await Dev.findOne({ github_username });
+    //console.log(band)
+
+    if (!dev) {
+      try{}catch(error){}
+      const response = await axios.get(
+        `https://api.github.com/users/${github_username}`
+      );
+
+      //// HANDLE ERRO AO DIGITAR UM USUARIO ERRADO ////
+
+      const { name = login, avatar_url, bio } = response.data;
+
+      const techsArray = parseStringAsArray(techs);
+
+      const location = {
+        type: "Point",
+        coordinates: [longitude, latitude],
+      };
+
+      dev = await Dev.create({
+        github_username,
+        name,
+        avatar_url,
+        bio,
+        techs: techsArray,
+        location,
+      });
+    } else {
+      console.log("chegou aqui");
+      return res.json({
+        message:
+          "Oops! it seems that you are already registered in our system ;)",
+      });
+    }*/
 };
+
+  /* async destroy(req, res) {
+    await Dev.findOneAndDelete(
+      { github_username: req.params.dev_name },
+      (err, dev) => {
+        // As always, handle any potential errors:
+        if (err)
+          return res.json({
+            menssage: "This user is not registered in our records",
+            status: err,
+          });
+        const response = {
+          message: "Dev deleted with success",
+          name: req.params.band_name,
+        };
+        return res.json(response);
+      }
+    );
+  },*/
