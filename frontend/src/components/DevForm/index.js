@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect } from "react";
-function BandForm({ onSubmit }) {
+
+function DevForm({ onSubmit }) {
   const [github_username, setGithub_username] = useState("");
   const [techs, setTechs] = useState("");
   const [latitude, setLatitude] = useState("0");
   const [longitude, setLongitude] = useState("0");
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -20,6 +22,7 @@ function BandForm({ onSubmit }) {
       }
     );
   }, []);
+
   async function handleSubmit(e) {
     e.preventDefault();
     await onSubmit({
@@ -31,6 +34,7 @@ function BandForm({ onSubmit }) {
     setGithub_username("");
     setTechs("");
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="input-block">
@@ -80,4 +84,4 @@ function BandForm({ onSubmit }) {
     </form>
   );
 }
-export default BandForm;
+export default DevForm;

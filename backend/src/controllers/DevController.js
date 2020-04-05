@@ -29,6 +29,8 @@ module.exports = {
 
         const { name = login, avatar_url, bio } = response.data;
 
+        //ARRUMAR QUANDO NAME É NULL
+
         const techsArray = parseStringAsArray(techs);
 
         const location = {
@@ -44,6 +46,7 @@ module.exports = {
           techs: techsArray,
           location,
         });
+
         return res.status(201).json({
           message: `Hello ${dev.name}, welcome! ;)`,
           dev: dev,
@@ -51,17 +54,22 @@ module.exports = {
       } catch (error) {
         // Error
         if (error.response) {
-          return res.status(404).json({message: "Oops! seems this user doesn't exists - try again ;)"})
+          return res.status(404).json({
+            message: "Oops! seems this user doesn't exists - try again ;)",
+          });
         } else if (error.request) {
-          return res.status(500).json({message: "Oops! we couldn't connect to our server - try again ;)"})
+          return res.status(500).json({
+            message: "Oops! we couldn't connect to our server - try again ;)",
+          });
         } else {
-          return res.status(500)
+          return res.status(500);
         }
       }
     } else {
       return res.status(200).json({
         message:
           "Oops! it seems that you are already registered in our system ;)",
+        dev: dev,
       });
     }
   },
@@ -88,7 +96,9 @@ module.exports = {
           { new: true },
           (err, doc) => {
             if (err) {
-              res.status(500).json({ message: "Oops! something went wrong - try again :(" });
+              res
+                .status(500)
+                .json({ message: "Oops! something went wrong - try again :(" });
             } else {
               return doc;
             }
@@ -101,11 +111,11 @@ module.exports = {
       } catch (error) {
         // Error
         if (error.response) {
-          return res.status(404)
+          return res.status(404);
         } else if (error.request) {
-          return res.status(404)
+          return res.status(404);
         } else {
-          return res.status(500)
+          return res.status(500);
         }
       }
     } else {
@@ -198,7 +208,7 @@ module.exports = {
     }*/
 };
 
-  /* async destroy(req, res) {
+/* async destroy(req, res) {
     await Dev.findOneAndDelete(
       { github_username: req.params.dev_name },
       (err, dev) => {
