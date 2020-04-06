@@ -48,18 +48,18 @@ module.exports = {
         });
 
         return res.status(201).json({
-          message: `Hello ${dev.name}, welcome! ;)`,
+          message: `Welcome, ${dev.name} !`,
           dev: dev,
         });
       } catch (error) {
         // Error
         if (error.response) {
-          return res.status(404).json({
-            message: "Oops! seems this user doesn't exists - try again ;)",
+          return res.status(200).json({
+            message: "Oops! seems this user doesn't exists",
           });
         } else if (error.request) {
-          return res.status(500).json({
-            message: "Oops! we couldn't connect to our server - try again ;)",
+          return res.status(200).json({
+            message: "Oops! we couldn't connect to our server",
           });
         } else {
           return res.status(500);
@@ -68,7 +68,7 @@ module.exports = {
     } else {
       return res.status(200).json({
         message:
-          "Oops! it seems that you are already registered in our system ;)",
+          "Oops! you are already registered",
         dev: dev,
       });
     }
@@ -98,14 +98,14 @@ module.exports = {
             if (err) {
               res
                 .status(500)
-                .json({ message: "Oops! something went wrong - try again :(" });
+                .json({ message: "Oops! something went wrong" });
             } else {
               return doc;
             }
           }
         );
         return res.status(201).json({
-          message: "Success! your info is up to date ;)",
+          message: "Success! your info is up to date",
           dev_updated: dev_updated,
         });
       } catch (error) {
@@ -120,7 +120,7 @@ module.exports = {
       }
     } else {
       return res.status(202).json({
-        message: "Oops! seems you are not registered yet :(",
+        message: "Oops! seems you are not registered yet",
       });
     }
   },

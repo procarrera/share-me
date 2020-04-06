@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./styles.css";
 
-export default function Flash(props) {
-  let [visibility, setVisibility] = useState("false");
-  let [message, setMessage] = useState("");
-  let [type, setType] = useState("");
-
+export default function Flash({ message, visibility, fade }) {
   return (
-    <div className="alert">
-      <h1>{props.message}</h1>
+    <div className={`${fade}`} style={{ visibility: `${visibility}` }}>
+      {message}
     </div>
   );
 }

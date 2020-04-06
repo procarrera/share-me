@@ -17,8 +17,9 @@ import Flash from "./components/Flash";
 // Estado: Informações mantidas pelo componente (Lembrar do conceito de imutabilidade)
 
 function App() {
-  const [message, setMessage] = useState("Hi there ;)");
-  const [type, setType] = useState(0);
+  const [fade, setFade] = useState("");
+  const [show, setShow] = useState("collapse");
+  const [message, setMessage] = useState("Hi there !");
   const [devs, setDevs] = useState([]);
 
   useEffect(() => {
@@ -29,23 +30,39 @@ function App() {
     loadDevs();
   }, []);
 
+  useEffect(() => {
+    function flashMassage() {
+      setTimeout(function () {
+        setShow("visible");
+        setFade("alert fade-in");
+      }, 1850);
+      setTimeout(function () {
+        setFade("alert fade-out");
+      }, 7500);
+      setTimeout(function () {
+        setShow("collapse");
+      }, 8250);
+    }
+    flashMassage();
+  }, [devs, message]);
+
   async function handleAddDev(data) {
     const response = await api.post("/devs", data);
+    setMessage(response.data.message);
     if (response.status === 201) {
       setDevs([response.data.dev, ...devs]);
       setMessage(response.data.message);
-      setType(response.status);
-      if (response.data.dev.name == null) setMessage("Hi there ;)");
-    } else {
-      setMessage(response.data.message);
-      setType(response.status);
-      console.log("ja existe ou erro");
+      if (response.data.dev.name == undefined) {
+        console.log("IF DO NULL: " + response.data.dev.name);
+        return setMessage("Welcome, don't you have a name?");
+      }
     }
+    console.log("passou aqui");
+    setMessage(response.data.message);
   }
 
   return (
     <div className="container">
-      <Flash message={message} type={type} />
       <header id="header">
         <h1>
           <img src={logo} height="55" alt="Github" />
@@ -57,6 +74,7 @@ function App() {
           </div>
         </h1>
         <slogan>we are all connected, enjoy ; )</slogan>
+        <Flash message={message} visibility={show} fade={fade} />
       </header>
       <div id="app">
         <aside>
