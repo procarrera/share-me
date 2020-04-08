@@ -61,7 +61,7 @@ function DevForm({ onSubmit }) {
       </div>
       <div className="input-group">
         <div className="input-block">
-          <input hidden="true"
+          <input hidden={true}
             type="number"
             name="latitude"
             id="latitude"
@@ -71,7 +71,7 @@ function DevForm({ onSubmit }) {
           />
         </div>
         <div className="input-block">
-          <input hidden="true"
+          <input hidden={true}
             type="number"
             name="longitude"
             id="longitude"

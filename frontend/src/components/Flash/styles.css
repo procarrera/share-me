@@ -17,8 +17,19 @@
   animation: jello-horizontal 0.9s both;
 }
 .fade-out {
+  
+}
+/*.fade-out {
   -webkit-animation: jello-horizontal-out 0.9s both;
   animation: jello-horizontal-out 0.9s both;
+}*/
+
+.speech-bubble-ds-arrow {
+  border-left: 21px solid transparent;
+  border-top: 20px solid #333;
+  bottom: -10px;
+  position: absolute;
+  left: 15px;
 }
 
 @media (max-width: 425px) {
@@ -28,7 +39,7 @@
     padding-left: 30px;
     padding-right: 30px;
     max-width: 350px;
-    border-radius: 25px 0px 25px 25px;
+    border-radius: 25px 25px 25px 25px;
   }
 }
 
@@ -41,7 +52,7 @@
     left: 52%;
     top: 85px;
     z-index: 1111 !important;
-    border-radius: 0px 25px 25px 25px;
+    border-radius: 25px 25px 25px 25px;
   }
 }
 @media (min-width: 769px) {
@@ -50,10 +61,10 @@
     display: flex;
     max-width: 320px;
     position: absolute;
-    left: 52%;
-    top: 95px;
+    left: 16%;
+    top: 190px;
     z-index: 1111 !important;
-    border-radius: 0px 25px 25px 25px;
+    border-radius: 25px 25px 25px 25px;
   }
 }
 

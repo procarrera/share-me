@@ -26,6 +26,7 @@ function App() {
   const [fontsLoaded, setFontsLoaded] = useState(true);
   const [devs, setDevs] = useState([]);
 
+
   useEffect(() => {
     setDataLoading(true);
     async function loadDevs() {
@@ -43,7 +44,6 @@ function App() {
   useEffect(() => {
     if (dataLoading !== true && fontsLoaded !== true) {
       setAllLoaded(true);
-      console.log(allLoaded);
     }
   }, [dataLoading, fontsLoaded]);
 
@@ -54,7 +54,7 @@ function App() {
       setDevs([response.data.dev, ...devs]);
       setMessage(response.data.message);
       if (response.data.dev.name == undefined) {
-        return setMessage("Welcome, don't you have a name?");
+        return setMessage("Welcome!");
       }
     }
     setMessage(response.data.message);
@@ -75,7 +75,6 @@ function App() {
         }, 8400);
       }
       flashMassage();
-      console.log(allLoaded);
     }
   }, [allLoaded, devs, message]);
 
@@ -91,12 +90,12 @@ function App() {
             <img src={logoGithub} height="20" alt="Github" />
           </div>
         </h1>
-        <slogan>we are all connected, enjoy ; )</slogan>
+        <div className="slogan">we are all connected, enjoy ; )</div>
         <Flash message={message} visibility={show} fade={fade} />
       </header>
       <div id="app">
         <aside>
-          <strong>cadastre seu perfil</strong>
+          <strong>SingUp here</strong>
           <DevForm onSubmit={handleAddDev} />
         </aside>
         {!allLoaded && <Loader />}
