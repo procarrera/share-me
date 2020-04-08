@@ -11,7 +11,7 @@ module.exports = {
       return res.status(202).json(devs);
     } else {
       return res.status(404).json({
-        message: "Oops! we couldn't load our base, please try again :(",
+        message: "Oops! we couldn't load our base, please try again",
       });
     }
   },
@@ -48,6 +48,7 @@ module.exports = {
         });
 
         return res.status(201).json({
+          type: "success",
           message: `Welcome, ${dev.name} !`,
           dev: dev,
         });
@@ -55,10 +56,12 @@ module.exports = {
         // Error
         if (error.response) {
           return res.status(200).json({
+            type: "error",
             message: "Oops! seems this user doesn't exists",
           });
         } else if (error.request) {
           return res.status(200).json({
+            type: "error",
             message: "Oops! we couldn't connect to our server",
           });
         } else {
@@ -67,8 +70,8 @@ module.exports = {
       }
     } else {
       return res.status(200).json({
-        message:
-          "Oops! you are already registered",
+        type: "error",
+        message: "Oops! you are already registered",
         dev: dev,
       });
     }
@@ -96,15 +99,16 @@ module.exports = {
           { new: true },
           (err, doc) => {
             if (err) {
-              res
-                .status(500)
-                .json({ message: "Oops! something went wrong" });
+              res.status(500).json({
+                type: "error",
+                message: "Oops! something went wrong" });
             } else {
               return doc;
             }
           }
         );
         return res.status(201).json({
+          type: "success",
           message: "Success! your info is up to date",
           dev_updated: dev_updated,
         });

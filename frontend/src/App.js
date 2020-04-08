@@ -11,40 +11,41 @@ import logo from "./assets/share.svg";
 import DevItem from "./components/DevItem/index";
 import DevForm from "./components/DevForm/index";
 import Flash from "./components/Flash";
+import Loader from "./components/Loader";
 
 // Component : bloco isolado de html, css e js o qual nao interfere no restante da aplicação
 // Propriedade: Informações que um componente pai (PARENT) passa para o componente filho (CHILD)
 // Estado: Informações mantidas pelo componente (Lembrar do conceito de imutabilidade)
 
 function App() {
+  const [allLoaded, setAllLoaded] = useState(false);
   const [fade, setFade] = useState("");
   const [show, setShow] = useState("collapse");
   const [message, setMessage] = useState("Hi there !");
+  const [dataLoading, setDataLoading] = useState(true);
+  const [fontsLoaded, setFontsLoaded] = useState(true);
   const [devs, setDevs] = useState([]);
 
   useEffect(() => {
+    setDataLoading(true);
     async function loadDevs() {
       const response = await api.get("/devs");
       setDevs(response.data.reverse());
+      setDataLoading(false);
     }
     loadDevs();
   }, []);
 
+  document.fonts.onloadingdone = () => {
+    setFontsLoaded(false);
+  };
+
   useEffect(() => {
-    function flashMassage() {
-      setTimeout(function () {
-        setShow("visible");
-        setFade("alert fade-in");
-      }, 1850);
-      setTimeout(function () {
-        setFade("alert fade-out");
-      }, 7500);
-      setTimeout(function () {
-        setShow("collapse");
-      }, 8250);
+    if (dataLoading !== true && fontsLoaded !== true) {
+      setAllLoaded(true);
+      console.log(allLoaded);
     }
-    flashMassage();
-  }, [devs, message]);
+  }, [dataLoading, fontsLoaded]);
 
   async function handleAddDev(data) {
     const response = await api.post("/devs", data);
@@ -53,13 +54,30 @@ function App() {
       setDevs([response.data.dev, ...devs]);
       setMessage(response.data.message);
       if (response.data.dev.name == undefined) {
-        console.log("IF DO NULL: " + response.data.dev.name);
         return setMessage("Welcome, don't you have a name?");
       }
     }
-    console.log("passou aqui");
     setMessage(response.data.message);
   }
+
+  useEffect(() => {
+    if (allLoaded === true) {
+      function flashMassage() {
+        setTimeout(function () {
+          setShow("visible");
+          setFade("alert fade-in");
+        }, 2250);
+        setTimeout(function () {
+          setFade("alert fade-out");
+        }, 7650);
+        setTimeout(function () {
+          setShow("collapse");
+        }, 8400);
+      }
+      flashMassage();
+      console.log(allLoaded);
+    }
+  }, [allLoaded, devs, message]);
 
   return (
     <div className="container">
@@ -81,13 +99,16 @@ function App() {
           <strong>cadastre seu perfil</strong>
           <DevForm onSubmit={handleAddDev} />
         </aside>
-        <main>
-          <ul>
-            {devs.map((dev) => (
-              <DevItem key={dev._id} dev={dev} />
-            ))}
-          </ul>
-        </main>
+        {!allLoaded && <Loader />}
+        {allLoaded && (
+          <main>
+            <ul>
+              {devs.map((dev) => (
+                <DevItem key={dev._id} dev={dev} />
+              ))}
+            </ul>
+          </main>
+        )}
       </div>
     </div>
   );
