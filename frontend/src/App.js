@@ -26,7 +26,6 @@ function App() {
   const [fontsLoaded, setFontsLoaded] = useState(true);
   const [devs, setDevs] = useState([]);
 
-
   useEffect(() => {
     setDataLoading(true);
     async function loadDevs() {
@@ -83,19 +82,21 @@ function App() {
       <header id="header">
         <h1>
           <img src={logo} height="55" alt="Github" />
-          .me <span style={{ fontWeight: 400, fontSize: 20 }}>
+          .me <span style={{ fontWeight: 400, fontSize: 22 }}>
             &nbsp;|
           </span>{" "}
           <div id="count-block">
             <img src={logoGithub} height="20" alt="Github" />
           </div>
         </h1>
-        <div className="slogan">we are all connected, enjoy ; )</div>
-        <Flash message={message} visibility={show} fade={fade} />
+        <div className="slogan">
+          we are all connected, enjoy ; )
+          <Flash message={message} visibility={show} fade={fade} />
+        </div>
       </header>
       <div id="app">
         <aside>
-          <strong>SingUp here</strong>
+          <strong>cadastre seu perfil</strong>
           <DevForm onSubmit={handleAddDev} />
         </aside>
         {!allLoaded && <Loader />}

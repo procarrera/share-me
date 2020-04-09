@@ -1,3 +1,17 @@
+.flash-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.smille {
+  font-family: "Pacifico", cursive;
+  font-weight: 900;
+  font-size: 30px;
+  color: #333;
+  position: relative;
+}
 .alert {
   font-family: Roboto, sans-serif;
   font-weight: 900;
@@ -16,13 +30,11 @@
   -webkit-animation: jello-horizontal 0.9s both;
   animation: jello-horizontal 0.9s both;
 }
+
 .fade-out {
-  
-}
-/*.fade-out {
   -webkit-animation: jello-horizontal-out 0.9s both;
   animation: jello-horizontal-out 0.9s both;
-}*/
+}
 
 .speech-bubble-ds-arrow {
   border-left: 21px solid transparent;
@@ -55,7 +67,7 @@
     border-radius: 25px 25px 25px 25px;
   }
 }
-@media (min-width: 769px) {
+@media (min-width: 769px) and (max-width: 1519px) {
   /* LAPTOP ~ DESKTOP */
   .alert {
     display: flex;
@@ -67,6 +79,22 @@
     border-radius: 25px 25px 25px 25px;
   }
 }
+@media (min-width: 1520px) {
+  /* 4K SCREEN */
+  .flash-container {
+   /* position: fixed;
+    right: 15px;
+    bottom: 190px;*/
+    z-index: 1111 !important;
+  }
+  .alert {
+    max-width: 320px;
+    /*position: relative;
+    right: 15px;
+    z-index: 1111 !important;*/
+    border-radius: 25px 25px 25px 25px;
+  }
+}
 
 @-webkit-keyframes jello-horizontal-out {
   0% {
@@ -75,7 +103,7 @@
     margin-top: initial;
   }
   100% {
-    margin-top: -60px;
+    margin-top: -40px;
   }
 }
 @keyframes jello-horizontal-out {
@@ -85,7 +113,7 @@
     margin-top: initial;
   }
   100% {
-    margin-top: -60px;
+    margin-top: -40px;
   }
 }
 
