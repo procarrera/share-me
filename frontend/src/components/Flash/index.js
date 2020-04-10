@@ -7,10 +7,9 @@ export default function Flash({ message, visibility, fade }) {
       {message}
       <div className="speech-bubble-ds-arrow"></div>
     </div>*/
-    <div className="flash-container fade-out" style={{ visibility: `${visibility}` }}>
+    <div className="flash-container" style={{ visibility: `${visibility}` }}>
       <div className={`${fade}`}>
         {message}
-        <div className="speech-bubble-ds-arrow"></div>
       </div>
     </div>
   );

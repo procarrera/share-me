@@ -3,10 +3,17 @@ main {
 }
 
 main ul {
+  margin-left: 310px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  list-style: none;
+  grid-auto-columns: minmax(380px, 3fr);
+  grid-template-rows: min-content min-content;
+  /*
+  Try explicit grid too:
+  grid-auto-columns: 1fr 3fr 1fr;
+  grid-auto-rows: 1fr 2fr;
+  */
+  grid-auto-flow: column;
+  grid-gap: 10px;
 }
 
 @media (max-width: 650px) {

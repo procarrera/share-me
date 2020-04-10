@@ -10,6 +10,7 @@ import logo from "./assets/share.svg";
 
 import DevItem from "./components/DevItem/index";
 import DevForm from "./components/DevForm/index";
+import Search from "./components/Search/index";
 import Flash from "./components/Flash";
 import Loader from "./components/Loader";
 
@@ -89,15 +90,14 @@ function App() {
             <img src={logoGithub} height="20" alt="Github" />
           </div>
         </h1>
-        <div className="slogan">
-          we are all connected, enjoy ; )
-          <Flash message={message} visibility={show} fade={fade} />
-        </div>
+        <div className="slogan">we are all connected, enjoy ; )</div>
+        <Flash message={message} visibility={show} fade={fade} />
       </header>
       <div id="app">
         <aside>
           <strong>cadastre seu perfil</strong>
           <DevForm onSubmit={handleAddDev} />
+          <Search />
         </aside>
         {!allLoaded && <Loader />}
         {allLoaded && (

@@ -36,13 +36,13 @@
   animation: jello-horizontal-out 0.9s both;
 }
 
-.speech-bubble-ds-arrow {
+/*.speech-bubble-ds-arrow {
   border-left: 21px solid transparent;
   border-top: 20px solid #333;
   bottom: -10px;
   position: absolute;
   left: 15px;
-}
+}*/
 
 @media (max-width: 425px) {
   /* MOBILE */
@@ -103,7 +103,7 @@
     margin-top: initial;
   }
   100% {
-    margin-top: -40px;
+    margin-top: -20px;
   }
 }
 @keyframes jello-horizontal-out {
@@ -113,7 +113,7 @@
     margin-top: initial;
   }
   100% {
-    margin-top: -40px;
+    margin-top: -20px;
   }
 }
 
