@@ -4,11 +4,11 @@
 
 #app {
   max-width: 1200px;
-  /*margin: 0 auto;*/
-  padding-left: 20px; 
+  margin: 0 auto;
+  padding: 20px 30px;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 }
 
 #loading {

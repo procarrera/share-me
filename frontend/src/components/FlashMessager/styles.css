@@ -1,29 +1,15 @@
-.flash-container {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.smille {
-  font-family: "Pacifico", cursive;
-  font-weight: 900;
-  font-size: 30px;
-  color: #333;
-  position: relative;
-}
 .alert {
+  text-align: center;
   font-family: Roboto, sans-serif;
   font-weight: 900;
-  font-size: 16px !important;
-  color: #eaeaeaea;
-  background: #333;
-  text-align: center;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-right: 15px;
-  padding-left: 15px;
-  height: fit-content;
+  font-size: 14px !important;
+  line-height: 22px;
+  color: #fff;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: min-content;
+  width: 100%;
+  border-radius: 25px 25px 25px 25px;
 }
 
 .fade-in {
@@ -36,65 +22,6 @@
   animation: jello-horizontal-out 0.9s both;
 }
 
-/*.speech-bubble-ds-arrow {
-  border-left: 21px solid transparent;
-  border-top: 20px solid #333;
-  bottom: -10px;
-  position: absolute;
-  left: 15px;
-}*/
-
-@media (max-width: 425px) {
-  /* MOBILE */
-  .alert {
-    font-size: 12px;
-    padding-left: 30px;
-    padding-right: 30px;
-    max-width: 350px;
-    border-radius: 25px 25px 25px 25px;
-  }
-}
-
-@media (min-width: 426px) and (max-width: 768px) {
-  /* TABLET */
-  .alert {
-    display: flex;
-    max-width: 320px;
-    position: sticky;
-    left: 52%;
-    top: 85px;
-    z-index: 1111 !important;
-    border-radius: 25px 25px 25px 25px;
-  }
-}
-@media (min-width: 769px) and (max-width: 1519px) {
-  /* LAPTOP ~ DESKTOP */
-  .alert {
-    display: flex;
-    max-width: 320px;
-    position: absolute;
-    left: 16%;
-    top: 190px;
-    z-index: 1111 !important;
-    border-radius: 25px 25px 25px 25px;
-  }
-}
-@media (min-width: 1520px) {
-  /* 4K SCREEN */
-  .flash-container {
-   /* position: fixed;
-    right: 15px;
-    bottom: 190px;*/
-    z-index: 1111 !important;
-  }
-  .alert {
-    max-width: 320px;
-    /*position: relative;
-    right: 15px;
-    z-index: 1111 !important;*/
-    border-radius: 25px 25px 25px 25px;
-  }
-}
 
 @-webkit-keyframes jello-horizontal-out {
   0% {
@@ -103,7 +30,7 @@
     margin-top: initial;
   }
   100% {
-    margin-top: -20px;
+    margin-top: -30px;
   }
 }
 @keyframes jello-horizontal-out {
@@ -113,7 +40,7 @@
     margin-top: initial;
   }
   100% {
-    margin-top: -20px;
+    margin-top: -30px;
   }
 }
 
