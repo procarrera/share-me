@@ -7,7 +7,7 @@ import NewsIcon from "../../assets/news-api.png";
 export default function GoogleNews() {
   const [update, setUpdate] = useState(false);
   const [news, setNews] = useState({ title: "" });
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [closed, setClosed] = useState(false);
   const [keywords, setKeywords] = useState(["javascript", "node"]);
 
@@ -20,7 +20,7 @@ export default function GoogleNews() {
       var encoded = uncoded.map((key) => encodeURIComponent(key));
       if (!encoded[1]) {
         setKeywords([encoded[0], ""]);
-        console.log(keywords[1]);
+        //console.log(keywords[1]);
       } else {
         setKeywords(encoded);
       }
@@ -42,17 +42,9 @@ export default function GoogleNews() {
   setTimeout(function () {
     if (!closed) {
       setUpdate(!update);
-      console.log("update");
+      //console.log("update");
     }
   }, 18000);
-
-  useEffect(() => {
-    if (closed === false) {
-      setTimeout(function () {
-        setVisible(true);
-      }, 8500);
-    }
-  }, [closed]);
 
   function handleClose() {
     setClosed(!closed);
@@ -63,7 +55,7 @@ export default function GoogleNews() {
     if (closed === false) {
       async function googleApi() {
         const response = await googleapi.get();
-        console.log("numero de resultados: " + response.data.totalResults);
+        //console.log("numero de resultados: " + response.data.totalResults);
         if (response.data.totalResults <= 100) {
           setNews(
             response.data.articles[
@@ -76,14 +68,6 @@ export default function GoogleNews() {
             response.data.articles[Math.floor(Math.random() * (+100 - +0)) + +0]
           );
         }
-        /*setNews(
-          response.data.articles[
-            parseInt(
-              Math.random() * (response.data.totalResults - 0 + 1),
-              response.data.totalResults
-            ) - 1
-          ]
-        );*/
       }
       googleApi();
     }
@@ -92,11 +76,11 @@ export default function GoogleNews() {
   return (
     <div className="news-container">
       <div className="news-row">
-        <a id="news-img" onClick={() => handleClose()}>
-          <img src={NewsIcon} />
+        <a href="#" id="news-img" onClick={() => handleClose()}>
+          <img src={NewsIcon} alt="news sync" />
         </a>
-        <a id="news-text" href={news.url}>
-          {visible & !closed && (
+        {visible && !closed && (
+          <a id="news-text" href={news.url}>
             <div
               className={`google-news scale-up-hor-right`}
               style={{ visibility: `${visible}` }}
@@ -106,9 +90,35 @@ export default function GoogleNews() {
                 <strong>read more...</strong>
               </p>
             </div>
-          )}
-        </a>
+          </a>
+        )}
       </div>
     </div>
   );
 }
+
+
+/*
+  return (
+    <div className="news-container">
+      <div className="news-row">
+        <a href="#" id="news-img" onClick={() => handleClose()}>
+          <img src={NewsIcon} alt="news sync" />
+        </a>
+        {visible && !closed && (
+          <a id="news-text" href={news.url}>
+            <div
+              className={`google-news scale-up-hor-right`}
+              style={{ visibility: `${visible}` }}
+            >
+              <p style={{ maxLines: 2 }}>{news.title}</p>
+              <p>
+                <strong>read more...</strong>
+              </p>
+            </div>
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}*/

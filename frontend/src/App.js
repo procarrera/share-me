@@ -81,7 +81,7 @@ function App() {
 
   return (
     <div className="container">
-      <GoogleNews/>
+      <GoogleNews />
       <header id="header">
         <h1>
           <img src={logo} height="75" alt="Github" />
