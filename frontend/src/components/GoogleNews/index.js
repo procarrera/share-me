@@ -12,7 +12,8 @@ export default function GoogleNews() {
   const [keywords, setKeywords] = useState(["javascript", "node"]);
 
   useEffect(() => {
-    if (localStorage.length != 0) {
+    if (localStorage.getItem("keywords") != null) {
+      console.log("existe keywords no localstorage")
       var uncoded = localStorage
         .getItem("keywords")
         .split(",", 2)
@@ -25,6 +26,7 @@ export default function GoogleNews() {
         setKeywords(encoded);
       }
     } else {
+      console.log("NAO existe keywords no localstorage")
       setKeywords(["javascript", "node"]);
     }
   }, [update]);
@@ -33,7 +35,7 @@ export default function GoogleNews() {
     baseURL:
       `https://newsapi.org/v2/everything?q=` +
       `${keywords[0]}+${keywords[1]}` +
-      `&language=en` +
+      `&language=pt` +
       `&sortBy=relevancy` +
       `&pageSize=100` +
       `&apiKey=5e1805fb09874fa09e9839c546659305`,
@@ -80,7 +82,7 @@ export default function GoogleNews() {
           <img src={NewsIcon} alt="news sync" />
         </a>
         {visible && !closed && (
-          <a id="news-text" href={news.url}>
+          <a id="news-text" href={news.url} target="_blank">
             <div
               className={`google-news scale-up-hor-right`}
               style={{ visibility: `${visible}` }}

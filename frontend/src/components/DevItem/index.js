@@ -8,9 +8,6 @@ function DevItem({ dev }) {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [show, setShow] = useState("none");
 
-  // async function handleRemove() {
-  //   await api.delete(`/bands/${band.github_username}`);
-  // }
   function imgIsLoaded() {
     setImgLoaded(true);
     setShow("initial");
@@ -19,7 +16,7 @@ function DevItem({ dev }) {
   return (
     <li className="band-item">
       <header>
-        {!imgLoaded && <ImgLoader/>}
+        {!imgLoaded && <ImgLoader />}
         <img
           id="avatar"
           onLoad={() => {
@@ -27,7 +24,7 @@ function DevItem({ dev }) {
           }}
           src={dev.avatar_url}
           alt={dev.name}
-          style={{display:`${show}`}}
+          style={{ display: `${show}` }}
         />
         <div className="band-info">
           <strong>{dev.name}</strong>
@@ -35,8 +32,9 @@ function DevItem({ dev }) {
         </div>
       </header>
       <p>{dev.bio}</p>
-      <a href={`https://github.com/${dev.github_username}`}>
-        Acessar perfil no GitHub
+      <div></div>
+      <a href={`https://github.com/${dev.github_username}`} target="_blank">
+        acessar perfil no GitHub
       </a>
     </li>
   );
