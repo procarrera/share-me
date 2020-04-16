@@ -5,7 +5,6 @@ function Search() {
     <div>
       Search:
       <p>key-areas:</p>
-      <p>outra coisa qualquer</p>
     </div>
   );
 }
