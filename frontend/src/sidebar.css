@@ -7,6 +7,8 @@ aside {
 }
 
 aside strong {
+  font-family: Roboto, sans-serif;
+  font-weight: 900;
   font-size: 20px;
   text-align: center;
   display: block;
@@ -73,7 +75,7 @@ aside form .input-block textarea::placeholder {
 aside form button[type="submit"] {
   width: 100%;
   border: 0;
-  margin-top: 30px;
+  margin-top: -15px;
   background: #7d40e7;
   border-radius: 6px;
   padding: 15px 20px;
@@ -81,11 +83,11 @@ aside form button[type="submit"] {
   font-weight: bold;
   color: #fff;
   cursor: pointer;
-  transition: background 0.5s;
-  transition: border-radius ease-in-out 0.5s;
+  transition: background 400ms;
+  transition: border-radius ease-in-out 400ms;
 }
 
 aside form button[type="submit"]:hover {
-  border-radius: 25px;
-  background: 	#5cb85c;
+  border-radius: 12px;
+  background: 	#40e77d;
 }

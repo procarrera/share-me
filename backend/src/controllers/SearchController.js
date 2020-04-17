@@ -1,27 +1,20 @@
-const Band = require('../models/Bands')
-const parseStringAsArray = require("../utils/parseStringAsArray");
+const Dev = require("../models/Devs");
 
 module.exports = {
   async index(req, res) {
-    const { latitude, longitude, techs } = req.query;
+    const { techs } = req.query;
 
-    const techsArray = parseStringAsArray(techs);
+    //const techsArray = parseStringAsArray(techs);
 
-    const bands = await Band.find({
+    /*const devs = await Dev.find({
       techs: {
-          $in: techsArray,
-      },
-      location: {
-          $near: {
-              $geometry: {
-                  type: 'Point',
-                  coordinates: [longitude, latitude],
-              },
-              $maxDistance: 10000,
-          }
+        $in: techsArray
       }
-    });
-
-    return res.json({ bands });
-  }
+    });*/
+    const devs = await Dev.find(
+      { $text: { $search: techs } },
+      { score: { $meta: "textScore" } }
+   ).sort( { score: { $meta: "textScore" } } )
+    return res.json({ devs });
+  },
 };

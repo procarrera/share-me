@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect } from "react";
-function BandForm({ onSubmit }) {
+
+function DevForm({ onSubmit }) {
   const [github_username, setGithub_username] = useState("");
   const [techs, setTechs] = useState("");
   const [latitude, setLatitude] = useState("0");
   const [longitude, setLongitude] = useState("0");
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -20,6 +22,7 @@ function BandForm({ onSubmit }) {
       }
     );
   }, []);
+
   async function handleSubmit(e) {
     e.preventDefault();
     await onSubmit({
@@ -28,9 +31,11 @@ function BandForm({ onSubmit }) {
       latitude,
       longitude
     });
+    localStorage.setItem("keywords", techs)
     setGithub_username("");
     setTechs("");
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="input-block">
@@ -57,7 +62,7 @@ function BandForm({ onSubmit }) {
       </div>
       <div className="input-group">
         <div className="input-block">
-          <input hidden="true"
+          <input hidden={true}
             type="number"
             name="latitude"
             id="latitude"
@@ -67,7 +72,7 @@ function BandForm({ onSubmit }) {
           />
         </div>
         <div className="input-block">
-          <input hidden="true"
+          <input hidden={true}
             type="number"
             name="longitude"
             id="longitude"
@@ -76,8 +81,8 @@ function BandForm({ onSubmit }) {
           />
         </div>
       </div>
-      <button type="submit">salvar</button>
+      <button type="submit" >salvar</button>
     </form>
   );
 }
-export default BandForm;
+export default DevForm;
