@@ -28,9 +28,14 @@
   padding-top: 25px;
   color: #000;
 }
+#header form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 #header h1 {
-  /*font-family: "Montserrat", sans-serif;*/
+  /*font-family: Roboto, sans-serif;*/
   font-family: "Pacifico", cursive;
   font-weight: 900;
   font-size: 52px;
@@ -57,7 +62,7 @@
   margin-bottom: 15px;
   font-family: "Pacifico", cursive;
   font-size: 28px;
-  color: darkgray;
+  color: #a9a9a9;
 }
 
 #app main {

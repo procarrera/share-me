@@ -3,17 +3,20 @@ import axios from "axios";
 
 import "./styles.css";
 import NewsIcon from "../../assets/news-api.png";
+import UsFlag from "../../assets/us.png";
+import BrFlag from "../../assets/brazil.png";
 
 export default function GoogleNews() {
   const [update, setUpdate] = useState(false);
-  const [news, setNews] = useState({ title: "" });
+  const [news, setNews] = useState({ title: "", url: "" });
   const [visible, setVisible] = useState(true);
   const [closed, setClosed] = useState(false);
-  const [keywords, setKeywords] = useState(["javascript", "node"]);
+  const [keywords, setKeywords] = useState(["javascript", ""]);
+  const [language, setLanguage] = useState("pt");
 
   useEffect(() => {
     if (localStorage.getItem("keywords") != null) {
-      console.log("existe keywords no localstorage")
+      console.log("existe keywords no localstorage");
       var uncoded = localStorage
         .getItem("keywords")
         .split(",", 2)
@@ -26,7 +29,7 @@ export default function GoogleNews() {
         setKeywords(encoded);
       }
     } else {
-      console.log("NAO existe keywords no localstorage")
+      console.log("NAO existe keywords no localstorage");
       setKeywords(["javascript", "node"]);
     }
   }, [update]);
@@ -35,7 +38,7 @@ export default function GoogleNews() {
     baseURL:
       `https://newsapi.org/v2/everything?q=` +
       `${keywords[0]}+${keywords[1]}` +
-      `&language=pt` +
+      `&language=${language}` +
       `&sortBy=relevancy` +
       `&pageSize=100` +
       `&apiKey=5e1805fb09874fa09e9839c546659305`,
@@ -46,19 +49,30 @@ export default function GoogleNews() {
       setUpdate(!update);
       //console.log("update");
     }
-  }, 18000);
+  }, 8000);
 
   function handleClose() {
     setClosed(!closed);
     setVisible(!visible);
   }
 
+  function handleLanguage(lang) {
+    setLanguage(lang);
+  }
+
   useEffect(() => {
     if (closed === false) {
       async function googleApi() {
         const response = await googleapi.get();
-        //console.log("numero de resultados: " + response.data.totalResults);
-        if (response.data.totalResults <= 100) {
+        if (response.data.totalResults == 0) {
+          console.log(response.data.totalResults);
+          setKeywords(["javascript", "node"]);
+          setNews({
+            title: "humn, there is no relevant news at the moment :(",
+            url: "",
+          });
+          console.log(news);
+        } else if (response.data.totalResults <= 100) {
           setNews(
             response.data.articles[
               Math.floor(Math.random() * (+response.data.totalResults - +0)) +
@@ -95,10 +109,13 @@ export default function GoogleNews() {
           </a>
         )}
       </div>
+      <div className="language">
+        <img src={BrFlag} onClick={() => handleLanguage("pt")} />
+        <img src={UsFlag} onClick={() => handleLanguage("en")} />
+      </div>
     </div>
   );
 }
-
 
 /*
   return (

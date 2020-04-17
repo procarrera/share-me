@@ -10,13 +10,10 @@ import logo from "./assets/share.svg";
 
 import DevItem from "./components/DevItem/index";
 import DevForm from "./components/DevForm/index";
+import SearchForm from "./components/SearchForm/index";
 import FlashMessager from "./components/FlashMessager";
 import Loader from "./components/Loader";
 import GoogleNews from "./components/GoogleNews";
-
-// Component : bloco isolado de html, css e js o qual nao interfere no restante da aplicação
-// Propriedade: Informações que um componente pai (PARENT) passa para o componente filho (CHILD)
-// Estado: Informações mantidas pelo componente (Lembrar do conceito de imutabilidade)
 
 function App() {
   const [allLoaded, setAllLoaded] = useState(false);
@@ -26,6 +23,8 @@ function App() {
   const [dataLoading, setDataLoading] = useState(true);
   const [fontsLoaded, setFontsLoaded] = useState(true);
   const [devs, setDevs] = useState([]);
+  const [filteredDevs, setFilteredDevs] = useState([]);
+  const [isfiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
     setDataLoading(true);
@@ -48,6 +47,7 @@ function App() {
   }, [dataLoading, fontsLoaded]);
 
   async function handleAddDev(data) {
+    setIsFiltered(false);
     const response = await api.post("/devs", data);
     setMessage(response.data.message);
     if (response.status === 201) {
@@ -58,6 +58,19 @@ function App() {
       setMessage(response.data.message);
     } else {
       setMessage(response.data.message);
+    }
+  }
+
+  async function handleSearchDev(techs) {
+    const response = await api.get("/search", { params: { techs: techs } });
+    if (techs !== "") {
+      setIsFiltered(true);
+      setFilteredDevs(response.data.devs);
+      console.log("setou a busca");
+    } else {
+      setFilteredDevs([]);
+      setIsFiltered(false);
+      console.log("CANCELOU");
     }
   }
 
@@ -93,6 +106,7 @@ function App() {
           </div>
         </h1>
         <div className="slogan">we are all connected, enjoy ; )</div>
+        <SearchForm onSubmit={handleSearchDev} />
       </header>
       <div id="app">
         <aside>
@@ -104,9 +118,9 @@ function App() {
         {allLoaded && (
           <main>
             <ul>
-              {devs.map((dev) => (
-                <DevItem key={dev._id} dev={dev} />
-              ))}
+              {isfiltered
+                ? filteredDevs.map((dev) => <DevItem key={dev._id} dev={dev} />)
+                : devs.map((dev) => <DevItem key={dev._id} dev={dev} />)}
             </ul>
           </main>
         )}

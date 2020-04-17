@@ -83,11 +83,11 @@ aside form button[type="submit"] {
   font-weight: bold;
   color: #fff;
   cursor: pointer;
-  transition: background 0.5s;
-  transition: border-radius ease-in-out 0.5s;
+  transition: background 400ms;
+  transition: border-radius ease-in-out 400ms;
 }
 
 aside form button[type="submit"]:hover {
-  border-radius: 25px;
-  background: 	#5cb85c;
+  border-radius: 12px;
+  background: 	#40e77d;
 }
