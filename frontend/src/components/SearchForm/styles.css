@@ -8,6 +8,7 @@
 
 .search-container input {
   cursor: text;
+  text-transform: capitalize;
   background: #ffffff;
   color: #7d40e7;
   font-weight: 900;

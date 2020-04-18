@@ -12,7 +12,7 @@ export default function GoogleNews() {
   const [visible, setVisible] = useState(true);
   const [closed, setClosed] = useState(false);
   const [keywords, setKeywords] = useState(["javascript", ""]);
-  const [language, setLanguage] = useState("pt");
+  const [language, setLanguage] = useState("en");
 
   useEffect(() => {
     if (sessionStorage.getItem("keywords") != null) {
