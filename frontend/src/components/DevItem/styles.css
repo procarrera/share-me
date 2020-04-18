@@ -26,14 +26,28 @@ li.band-item header .band-info {
   font-size: 16px;
   color: #333;
 }
+
+.band-info #score {
+  display: flex;
+  height: 16px;
+}
+
+.band-info #score img {
+  height: 16px;
+  width: 16px;
+}
+
 .band-info span {
+  font-family: Roboto, sans-serif;
   font-size: 13px;
   color: #999;
+  font-weight: 900px;
   margin-top: 2px;
 }
+
 li.band-item p {
   color: #666;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 20px;
   margin: 10px 0;
 }
@@ -110,4 +124,3 @@ ul li:first-child {
     opacity: 1;
   }
 }
-

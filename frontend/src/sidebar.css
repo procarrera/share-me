@@ -15,6 +15,15 @@ aside strong {
   color: rgb(56, 56, 56);
 }
 
+aside a {
+  margin-top: 30px;
+  margin-bottom: 0px;
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  color: #333;
+}
+
 aside form {
   margin-top: 30px;
 }
@@ -69,7 +78,6 @@ aside form .input-block textarea::placeholder {
   color: rgb(199, 198, 198);
   line-height: 1.5;
   padding-top: 12px;
-
 }
 
 aside form button[type="submit"] {
@@ -89,5 +97,5 @@ aside form button[type="submit"] {
 
 aside form button[type="submit"]:hover {
   border-radius: 12px;
-  background: 	#40e77d;
+  background: #40e77d;
 }

@@ -15,9 +15,9 @@ export default function GoogleNews() {
   const [language, setLanguage] = useState("pt");
 
   useEffect(() => {
-    if (localStorage.getItem("keywords") != null) {
-      console.log("existe keywords no localstorage");
-      var uncoded = localStorage
+    if (sessionStorage.getItem("keywords") != null) {
+      console.log("existe keywords no sessionStorage");
+      var uncoded = sessionStorage
         .getItem("keywords")
         .split(",", 2)
         .map((key) => key.trim());
@@ -29,7 +29,7 @@ export default function GoogleNews() {
         setKeywords(encoded);
       }
     } else {
-      console.log("NAO existe keywords no localstorage");
+      console.log("NAO existe keywords no sessionStorage");
       setKeywords(["javascript", "node"]);
     }
   }, [update]);

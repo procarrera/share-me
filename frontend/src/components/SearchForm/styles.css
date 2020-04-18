@@ -3,16 +3,35 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
+  width: 655px;
 }
 
 .search-container input {
   cursor: text;
   background: #ffffff;
+  color: #7d40e7;
+  font-weight: 900;
   border-radius: 20px 0px 0px 20px;
   padding: 8px 25px;
-  min-width: 400px;
+  flex: 3;
   border: 0px;
   margin-right: 0px;
+}
+
+.search-container #results {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a9a9a9;
+  font-size: 12px;
+  font-weight: 900;
+  background: #ffffff;
+  padding: 8px;
+  border: 0px;
+  margin: 0px;
+}
+.search-container #results img {
+  margin-left: 3px;
 }
 
 .search-container input::placeholder {

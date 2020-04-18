@@ -31,7 +31,7 @@ function DevForm({ onSubmit }) {
       latitude,
       longitude
     });
-    localStorage.setItem("keywords", techs)
+    sessionStorage.setItem("keywords", techs)
     setGithub_username("");
     setTechs("");
   }

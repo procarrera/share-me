@@ -25,6 +25,7 @@ function App() {
   const [devs, setDevs] = useState([]);
   const [filteredDevs, setFilteredDevs] = useState([]);
   const [isfiltered, setIsFiltered] = useState(false);
+  const [results, setResults] = useState(0);
 
   useEffect(() => {
     setDataLoading(true);
@@ -66,8 +67,10 @@ function App() {
     if (techs !== "") {
       setIsFiltered(true);
       setFilteredDevs(response.data.devs);
+      setResults(response.data.devs.length);
       console.log("setou a busca");
     } else {
+      setResults(0);
       setFilteredDevs([]);
       setIsFiltered(false);
       console.log("CANCELOU");
@@ -97,7 +100,7 @@ function App() {
       <GoogleNews />
       <header id="header">
         <h1>
-          <img src={logo} height="75" alt="Github" />
+          <img src={logo} height="65" alt="Github" />
           .me <span style={{ fontWeight: 400, fontSize: 28 }}>
             &nbsp;|
           </span>{" "}
@@ -106,20 +109,23 @@ function App() {
           </div>
         </h1>
         <div className="slogan">we are all connected, enjoy ; )</div>
-        <SearchForm onSubmit={handleSearchDev} />
+        <SearchForm onSubmit={handleSearchDev} results={results} />
       </header>
       <div id="app">
         <aside>
           <strong>cadastre seu perfil</strong>
           <FlashMessager message={message} visibility={show} fade={fade} />
           <DevForm onSubmit={handleAddDev} />
+          <a>Ao cadastrar concordo com os todos os termos.</a>
         </aside>
         {!allLoaded && <Loader />}
         {allLoaded && (
           <main>
             <ul>
               {isfiltered
-                ? filteredDevs.map((dev) => <DevItem key={dev._id} dev={dev} />)
+                ? filteredDevs.map((dev) => (
+                    <DevItem key={dev._id} dev={dev} devScore={dev.score} />
+                  ))
                 : devs.map((dev) => <DevItem key={dev._id} dev={dev} />)}
             </ul>
           </main>
