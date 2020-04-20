@@ -8,6 +8,11 @@
         "methods": ["GET"]
       },
       {
+        "src": "/search",
+        "dest": "/index.js",
+        "methods": ["GET"]
+      },
+      {
         "src": "/devs",
         "dest": "/index.js",
         "methods": ["POST", "OPTIONS"],
