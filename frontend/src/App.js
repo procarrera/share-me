@@ -14,6 +14,7 @@ import SearchForm from "./components/SearchForm/index";
 import FlashMessager from "./components/FlashMessager";
 import Loader from "./components/Loader";
 import GoogleNews from "./components/GoogleNews";
+import Terms from "./components/Terms";
 
 function App() {
   const [allLoaded, setAllLoaded] = useState(false);
@@ -26,6 +27,11 @@ function App() {
   const [filteredDevs, setFilteredDevs] = useState([]);
   const [isfiltered, setIsFiltered] = useState(false);
   const [results, setResults] = useState(0);
+  const [showTerms, setShowTerms] = useState(false);
+
+  function handleShowTerms() {
+    setShowTerms(!showTerms);
+  }
 
   useEffect(() => {
     setDataLoading(true);
@@ -97,6 +103,7 @@ function App() {
 
   return (
     <div className="container">
+      <Terms showTerms={showTerms} />
       <GoogleNews />
       <header id="header">
         <h1>
@@ -108,7 +115,7 @@ function App() {
             <img src={logoGithub} height="20" alt="Github" />
           </div>
         </h1>
-        <div className="slogan">we are all connected, enjoy ; )</div>
+        <div className="slogan">we are all connected, enjoy ;)</div>
         <SearchForm onSubmit={handleSearchDev} results={results} />
       </header>
       <div id="app">
@@ -116,7 +123,17 @@ function App() {
           <strong>cadastre seu perfil</strong>
           <FlashMessager message={message} visibility={show} fade={fade} />
           <DevForm onSubmit={handleAddDev} />
-          <a>Ao cadastrar concordo com os todos os termos.</a>
+          <a
+            onClick={handleShowTerms}
+            style={{
+              cursor: "pointer",
+              textDecoration: "underline",
+              color: "#303030",
+              opacity: 0.6,
+            }}
+          >
+            Ao cadastrar concordo com os todos os termos
+          </a>
         </aside>
         {!allLoaded && <Loader />}
         {allLoaded && (

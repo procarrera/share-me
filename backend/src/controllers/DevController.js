@@ -27,7 +27,7 @@ module.exports = {
           `https://api.github.com/users/${github_username}`
         );
 
-        const { name = login, avatar_url, bio } = response.data;
+        const { name = login, avatar_url, bio, email, hireable} = response.data;
 
         //ARRUMAR QUANDO NAME É NULL
 
@@ -43,6 +43,8 @@ module.exports = {
           name,
           avatar_url,
           bio,
+          email,
+          hireable,
           techs: techsArray,
           location,
         });
@@ -101,7 +103,8 @@ module.exports = {
             if (err) {
               res.status(500).json({
                 type: false,
-                message: "Oops! something went wrong" });
+                message: "Oops! something went wrong",
+              });
             } else {
               return doc;
             }

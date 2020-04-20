@@ -24,7 +24,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 25px;
+  padding-top: 15px;
   color: #000;
 }
 #header form {
@@ -78,5 +78,18 @@
   }
   #app aside {
     width: 100%;
+  }
+}
+
+@media (max-width: 425px) {
+  #app {
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  #header .slogan {
+    font-size: 26px;
+    max-width: 92vw;
   }
 }

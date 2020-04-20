@@ -6,6 +6,12 @@ const DevSchema = new mongoose.Schema({
     type: String,
     default: "no-name",
   },
+  email: {
+    type: String,
+  },
+  hireable: {
+    type: Boolean,
+  },
   github_username: String,
   bio: String,
   avatar_url: String,

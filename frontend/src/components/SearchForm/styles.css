@@ -10,7 +10,7 @@
   cursor: text;
   text-transform: capitalize;
   background: #ffffff;
-  color: #7d40e7;
+  color: #333;
   font-weight: 900;
   border-radius: 20px 0px 0px 20px;
   padding: 8px 25px;
@@ -77,4 +77,19 @@
 .search-container button#clear img:hover {
   filter: sepia(100%);
   opacity: 1;
+}
+
+@media (max-width: 880px) {
+  .search-container {
+    width: 70vw;
+  }
+}
+@media (max-width: 430px) {
+  .search-container {
+    width: 90vw;
+  }
+  .search-container input {
+    padding: 8px 8px;
+    flex: 2;
+  }
 }

@@ -1,3 +1,8 @@
+aside * > * {
+  margin: 0;
+  padding: 0;
+}
+
 aside {
   width: 320px;
   background: #fff;
@@ -98,4 +103,10 @@ aside form button[type="submit"] {
 aside form button[type="submit"]:hover {
   border-radius: 12px;
   background: #40e77d;
+}
+
+@media (max-width: 425px) {
+  aside {
+    padding: 20px 20px;
+  }
 }
