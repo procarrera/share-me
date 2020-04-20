@@ -80,6 +80,7 @@ ul li:first-child {
   -moz-animation: fadein 1s ease-out; /* Firefox */
   -webkit-animation: fadein 1s ease-out; /* Safari and Chrome */
   -o-animation: fadein 1s ease-out; /* Opera */
+  animation: fadein 1s ease-out;
 }
 
 @keyframes fadein {
