@@ -58,7 +58,7 @@ function App() {
     const response = await api.post("/devs", data);
     setMessage(response.data.message);
     if (response.status === 201) {
-      if (response.data.dev.name == undefined) {
+      if (response.data.dev.name === null) {
         return setMessage("Welcome!");
       }
       setDevs([response.data.dev, ...devs]);

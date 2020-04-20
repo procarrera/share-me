@@ -10,7 +10,7 @@ const port = "3333";
 
 const app = express();
 
-mongoose.connect(process.env.MONGO_URL2, {
+mongoose.connect(process.env.MONGO_SHARE_ME, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });

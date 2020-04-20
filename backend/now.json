@@ -3,12 +3,12 @@
     "builds": [{ "src": "index.js", "use": "@now/node-server" }],
     "routes": [
       {
-        "src": "/bands",
+        "src": "/devs",
         "dest": "/index.js",
         "methods": ["GET"]
       },
       {
-        "src": "/bands",
+        "src": "/devs",
         "dest": "/index.js",
         "methods": ["POST", "OPTIONS"],
         "headers": {
@@ -24,7 +24,7 @@
       }
     ],
       "env": {
-        "MONGO_URL2": "@mongo_url2"
+        "MONGO_SHARE_ME": "@mongo_share_me"
       }
   }
   

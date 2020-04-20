@@ -31,7 +31,9 @@
   background: transparent;
 }
 
-.news-row a {
+.news-row button {
+  border: 0;
+  background: none;
   cursor: pointer;
 }
 
@@ -56,7 +58,7 @@
   color: #fff;
   background-color: #000;
   opacity: 0.9;
-  border-radius: 6px 6px 6px 6px;
+  border-radius: 6px 15px 15px 6px;
   padding: 6px;
   padding-right: 18px;
   padding-left: 12px;

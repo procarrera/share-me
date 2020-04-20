@@ -29,14 +29,14 @@ export default function SearchForm({ onSubmit, results }) {
         />
         {results !== 0 && (
           <div id="results">
-            {results} <img src={People} />
+            {results} <img src={People} alt=""/>
           </div>
         )}
         <button type="submit" id="search">
-          <img src={Search} />
+          <img src={Search} alt="" />
         </button>
         <button id="clear" onClick={() => handleClear()}>
-          <img src={Clear} />
+          <img src={Clear} alt="" />
         </button>
       </div>
     </form>

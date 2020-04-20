@@ -16,7 +16,7 @@ export default function GoogleNews() {
 
   useEffect(() => {
     if (sessionStorage.getItem("keywords") != null) {
-      console.log("existe keywords no sessionStorage");
+      //console.log("existe keywords no sessionStorage");
       var uncoded = sessionStorage
         .getItem("keywords")
         .split(",", 2)
@@ -64,7 +64,7 @@ export default function GoogleNews() {
     if (closed === false) {
       async function googleApi() {
         const response = await googleapi.get();
-        if (response.data.totalResults == 0) {
+        if (response.data.totalResults === 0) {
           console.log(response.data.totalResults);
           setKeywords(["javascript", "node"]);
           setNews({
@@ -92,9 +92,9 @@ export default function GoogleNews() {
   return (
     <div className="news-container">
       <div className="news-row">
-        <a href="#" id="news-img" onClick={() => handleClose()}>
+        <button href="#" id="news-img" onClick={() => handleClose()}>
           <img src={NewsIcon} alt="news sync" />
-        </a>
+        </button>
         {visible && !closed && (
           <a id="news-text" href={news.url} target="_blank">
             <div
@@ -110,8 +110,8 @@ export default function GoogleNews() {
         )}
       </div>
       <div className="language">
-        <img src={BrFlag} onClick={() => handleLanguage("pt")} />
-        <img src={UsFlag} onClick={() => handleLanguage("en")} />
+        <img src={BrFlag} onClick={() => handleLanguage("pt")} alt="" />
+        <img src={UsFlag} onClick={() => handleLanguage("en")} alt="" />
       </div>
     </div>
   );

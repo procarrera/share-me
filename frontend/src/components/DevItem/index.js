@@ -42,7 +42,7 @@ function DevItem({ dev, devScore }) {
           {dev.score && (
             <div id="score">
               {score.map((score) => (
-                <img key={score.toString()} src={Trophy} />
+                <img key={score.toString()} src={Trophy} alt="" />
               ))}
             </div>
           )}

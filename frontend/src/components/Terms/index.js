@@ -18,7 +18,7 @@ export default function Terms({ showTerms }) {
       {!close && (
         <div id="terms-container">
           <div className="terms-content">
-            <button onClic onClick={() => handleOpenClose()}>
+            <button onClick={() => handleOpenClose()}>
               AGREE &amp; CLOSE
             </button>
             <h2 style={{ textAlign: "center" }}>
