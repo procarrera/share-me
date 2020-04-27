@@ -2,7 +2,7 @@ li.band-item {
   background: #fff;
   box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.2);
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px 20px;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -25,6 +25,18 @@ li.band-item header .band-info {
   display: block;
   font-size: 16px;
   color: #333;
+}
+
+#user-page {
+  display: flex;
+  align-items: center;
+  padding: 0px 4px;
+}
+#user-page img {
+  opacity: 0.4;
+}
+#user-page:hover img {
+  opacity: 1;
 }
 
 .band-info #score {

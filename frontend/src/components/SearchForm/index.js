@@ -13,6 +13,17 @@ export default function SearchForm({ onSubmit, results }) {
     await onSubmit(techs);
   }
 
+  function keyPress(e) {
+    if (e.keyCode == 13) {
+      var element = document.querySelector("#devs_list");
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      //console.log("value", e.target.value);
+      // put the login here
+    } else {
+     // console.log(e.keyCode);
+    }
+  }
+
   function handleClear() {
     setTechs("");
   }
@@ -26,10 +37,11 @@ export default function SearchForm({ onSubmit, results }) {
           id="techs"
           value={techs}
           onChange={(e) => setTechs(e.target.value)}
+          onKeyUp={(e) => keyPress(e)}
         />
         {results !== 0 && (
           <div id="results">
-            {results} <img src={People} alt=""/>
+            {results} <img src={People} alt="" />
           </div>
         )}
         <button type="submit" id="search">

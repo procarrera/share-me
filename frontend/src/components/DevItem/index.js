@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
-//import api from "../../services/api";
 
 import "./styles.css";
 import ImgLoader from "../ImgLoader";
 import Trophy from "../../assets/trophy.png";
+import AddUser from "../../assets/add-user.png";
+require("dotenv").config();
 
 function DevItem({ dev, devScore }) {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [show, setShow] = useState("none");
   const [score, setScore] = useState([]);
+
+  const filestackapi = process.env.REACT_APP_FILESTACK_API_KEY;
+
+  const fitImage =
+    `https://cdn.filestackcontent.com/${filestackapi}/` +
+    `resize=width:54,height:54,fit:clip,align:top` +
+    `/output=secure:true/` +
+    `${dev.avatar_url}`;
 
   useEffect(() => {
     let a = dev.score;
@@ -33,7 +42,7 @@ function DevItem({ dev, devScore }) {
           onLoad={() => {
             imgIsLoaded();
           }}
-          src={dev.avatar_url}
+          src={fitImage}
           alt={dev.name}
           style={{ display: `${show}` }}
         />
@@ -50,9 +59,24 @@ function DevItem({ dev, devScore }) {
         </div>
       </header>
       <p>{dev.bio}</p>
-      <a href={`https://github.com/${dev.github_username}`} target="_blank">
-        acessar perfil no GitHub
-      </a>
+      <div
+        className="links"
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+          alignItems: "center",
+        }}
+      >
+        <a
+          id="user-page"
+          href={`https://github.com/${dev.github_username}`}
+          target="_blank"
+        >
+          <img src={AddUser} style={{ height: "18px", width: "18px" }} />
+          <span>GitHub profile</span>
+        </a>
+      </div>
     </li>
   );
 }

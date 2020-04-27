@@ -29,7 +29,7 @@ export default function GoogleNews() {
         setKeywords(encoded);
       }
     } else {
-      console.log("NAO existe keywords no sessionStorage");
+      //console.log("NAO existe keywords no sessionStorage");
       setKeywords(["javascript", "node"]);
     }
   }, [update]);

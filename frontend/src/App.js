@@ -74,12 +74,12 @@ function App() {
       setIsFiltered(true);
       setFilteredDevs(response.data.devs);
       setResults(response.data.devs.length);
-      console.log("setou a busca");
+      //console.log("setou a busca");
     } else {
       setResults(0);
       setFilteredDevs([]);
       setIsFiltered(false);
-      console.log("CANCELOU");
+      //console.log("CANCELOU");
     }
   }
 
@@ -138,7 +138,7 @@ function App() {
         {!allLoaded && <Loader />}
         {allLoaded && (
           <main>
-            <ul>
+            <ul id="devs_list">
               {isfiltered
                 ? filteredDevs.map((dev) => (
                     <DevItem key={dev._id} dev={dev} devScore={dev.score} />
