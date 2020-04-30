@@ -4,6 +4,7 @@ import "./styles.css";
 import ImgLoader from "../ImgLoader";
 import Trophy from "../../assets/trophy.png";
 import AddUser from "../../assets/add-user.png";
+import Refresh from "../../assets/refresh.png";
 require("dotenv").config();
 
 function DevItem({ dev, devScore }) {
@@ -59,23 +60,21 @@ function DevItem({ dev, devScore }) {
         </div>
       </header>
       <p>{dev.bio}</p>
-      <div
-        className="links"
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
+      <div className="links">
         <a
           id="user-page"
           href={`https://github.com/${dev.github_username}`}
           target="_blank"
         >
-          <img src={AddUser} style={{ height: "18px", width: "18px" }} />
-          <span>GitHub profile</span>
+          <span>Access GitHub</span>
         </a>
+        <button>
+          <img
+            src={Refresh}
+            style={{ height: "16px", width: "16px" }}
+            alt="auto-update"
+          />
+        </button>
       </div>
     </li>
   );

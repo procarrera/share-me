@@ -67,6 +67,21 @@ function App() {
       setMessage(response.data.message);
     }
   }
+  
+  async function handleUpdate(dev) {
+    setIsFiltered(false);
+    const response = await api.put(`/devs/${dev}`);
+    setMessage(response.data.message);
+    if (response.status === 201) {
+      if (response.data.dev.name === null) {
+        return setMessage("Ok!");
+      }
+      setDevs([response.data.dev, ...devs]);
+      setMessage(response.data.message);
+    } else {
+      setMessage(response.data.message);
+    }
+  }
 
   async function handleSearchDev(techs) {
     const response = await api.get("/search", { params: { techs: techs } });

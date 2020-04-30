@@ -32,11 +32,36 @@ li.band-item header .band-info {
   align-items: center;
   padding: 0px 4px;
 }
+#user-page a {
+  color: #8e4dff;
+}
 #user-page img {
   opacity: 0.4;
 }
 #user-page:hover img {
   opacity: 1;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.links button {
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+.links button:hover {
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+.links button img {
+  opacity: 0.15;
 }
 
 .band-info #score {
