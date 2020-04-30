@@ -12,12 +12,12 @@ aside {
 }
 
 aside strong {
-  font-family: Roboto, sans-serif;
-  font-weight: 900;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
   font-size: 20px;
   text-align: center;
   display: block;
-  color: rgb(56, 56, 56);
+  color: #acacac;
 }
 
 aside a {

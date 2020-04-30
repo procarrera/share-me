@@ -3,14 +3,18 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import ImgLoader from "../ImgLoader";
 import Trophy from "../../assets/trophy.png";
-import AddUser from "../../assets/add-user.png";
 import Refresh from "../../assets/refresh.png";
 require("dotenv").config();
 
-function DevItem({ dev, devScore }) {
+function DevItem({ dev, devScore, update }) {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [show, setShow] = useState("none");
   const [score, setScore] = useState([]);
+
+  async function handleUpdate(e) {
+    console.log("update do devItem acionado")
+    await update(e);
+  }
 
   const filestackapi = process.env.REACT_APP_FILESTACK_API_KEY;
 
@@ -68,7 +72,7 @@ function DevItem({ dev, devScore }) {
         >
           <span>Access GitHub</span>
         </a>
-        <button>
+        <button onClick={() => handleUpdate(dev.github_username)}>
           <img
             src={Refresh}
             style={{ height: "16px", width: "16px" }}

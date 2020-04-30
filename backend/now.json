@@ -1,35 +1,18 @@
 {
-    "version": 2,
-    "builds": [{ "src": "index.js", "use": "@now/node-server" }],
-    "routes": [
-      {
-        "src": "/devs",
-        "dest": "/index.js",
-        "methods": ["GET"]
+  "version": 2,
+  "builds": [{ "src": "index.js", "use": "@now/node-server" }],
+  "routes": [
+    {
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
       },
-      {
-        "src": "/search",
-        "dest": "/index.js",
-        "methods": ["GET"]
-      },
-      {
-        "src": "/devs",
-        "dest": "/index.js",
-        "methods": ["POST", "OPTIONS"],
-        "headers": {
-          "Access-Control-Allow-Origin": "/*",
-          "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-          "Access-Control-Allow-Credentials": "true"
-        }
-      },
-      {
-        "src": "/",
-        "dest": "/index.js",
-        "methods": ["GET"]
-      }
-    ],
-      "env": {
-        "MONGO_SHARE_ME": "@mongo_share_me"
-      }
+      "src": "/.*",
+      "dest": "/index.js"
+    }
+  ],
+  "env": {
+    "MONGO_SHARE_ME": "@mongo_share_me"
   }
-  
+}

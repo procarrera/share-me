@@ -33,13 +33,15 @@ function App() {
     setShowTerms(!showTerms);
   }
 
+  async function loadDevs() {
+    const response = await api.get("/devs");
+    setDevs(response.data.reverse());
+    setDataLoading(false);
+    console.log("usuarios carregados");
+  }
+
   useEffect(() => {
     setDataLoading(true);
-    async function loadDevs() {
-      const response = await api.get("/devs");
-      setDevs(response.data.reverse());
-      setDataLoading(false);
-    }
     loadDevs();
   }, []);
 
@@ -67,16 +69,14 @@ function App() {
       setMessage(response.data.message);
     }
   }
-  
+
   async function handleUpdate(dev) {
+    console.log("handleUpdate do APP acionado: " + dev);
     setIsFiltered(false);
     const response = await api.put(`/devs/${dev}`);
     setMessage(response.data.message);
     if (response.status === 201) {
-      if (response.data.dev.name === null) {
-        return setMessage("Ok!");
-      }
-      setDevs([response.data.dev, ...devs]);
+      loadDevs();
       setMessage(response.data.message);
     } else {
       setMessage(response.data.message);
@@ -130,7 +130,7 @@ function App() {
             <img src={logoGithub} height="20" alt="Github" />
           </div>
         </h1>
-        <div className="slogan">we are all connected, enjoy ;)</div>
+        <div className="slogan">we are all connected</div>
         <SearchForm onSubmit={handleSearchDev} results={results} />
       </header>
       <div id="app">
@@ -156,9 +156,16 @@ function App() {
             <ul id="devs_list">
               {isfiltered
                 ? filteredDevs.map((dev) => (
-                    <DevItem key={dev._id} dev={dev} devScore={dev.score} />
+                    <DevItem
+                      key={dev._id}
+                      dev={dev}
+                      devScore={dev.score}
+                      update={handleUpdate}
+                    />
                   ))
-                : devs.map((dev) => <DevItem key={dev._id} dev={dev} />)}
+                : devs.map((dev) => (
+                    <DevItem key={dev._id} dev={dev} update={handleUpdate} />
+                  ))}
             </ul>
           </main>
         )}

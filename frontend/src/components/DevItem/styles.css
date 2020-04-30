@@ -60,6 +60,10 @@ li.band-item header .band-info {
   margin: 0;
   padding: 0;
 }
+.links button:hover img {
+  opacity: 0.8;
+}
+
 .links button img {
   opacity: 0.15;
 }
