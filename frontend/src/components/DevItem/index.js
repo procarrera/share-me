@@ -12,7 +12,6 @@ function DevItem({ dev, devScore, update }) {
   const [score, setScore] = useState([]);
 
   async function handleUpdate(e) {
-    console.log("update do devItem acionado")
     await update(e);
   }
 

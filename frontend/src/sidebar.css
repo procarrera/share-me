@@ -12,7 +12,7 @@ aside {
 }
 
 aside strong {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 20px;
   text-align: center;
@@ -53,6 +53,10 @@ aside form .input-block label {
   font-size: 14px;
   font-weight: bold;
   display: block;
+}
+
+aside form .input-block input#github_username {
+  text-transform: lowercase;
 }
 
 aside form .input-block input {

@@ -6,6 +6,10 @@ export default function DevForm({ onSubmit }) {
   const [latitude, setLatitude] = useState("0");
   const [longitude, setLongitude] = useState("0");
 
+  function lowerCase(text) {
+    setGithub_username(text.toLowerCase());
+  }
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -24,6 +28,7 @@ export default function DevForm({ onSubmit }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    lowerCase(github_username);
     await onSubmit({
       github_username,
       techs,
@@ -44,6 +49,7 @@ export default function DevForm({ onSubmit }) {
           placeholder=""
           required
           value={github_username}
+          onKeyUp={(e) => lowerCase(e.target.value)}
           onChange={(e) => setGithub_username(e.target.value)}
         />
       </div>

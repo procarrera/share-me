@@ -37,7 +37,6 @@ function App() {
     const response = await api.get("/devs");
     setDevs(response.data.reverse());
     setDataLoading(false);
-    console.log("usuarios carregados");
   }
 
   useEffect(() => {
@@ -71,7 +70,6 @@ function App() {
   }
 
   async function handleUpdate(dev) {
-    console.log("handleUpdate do APP acionado: " + dev);
     setIsFiltered(false);
     const response = await api.put(`/devs/${dev}`);
     setMessage(response.data.message);
@@ -122,12 +120,10 @@ function App() {
       <GoogleNews />
       <header id="header">
         <h1>
-          <img src={logo} height="65" alt="Github" />
-          .me <span style={{ fontWeight: 400, fontSize: 28 }}>
-            &nbsp;|
-          </span>{" "}
+          <img src={logo} height="55" alt="Github"/>
+            .me
           <div id="count-block">
-            <img src={logoGithub} height="20" alt="Github" />
+            <img src={logoGithub} height="16" alt="Github" />
           </div>
         </h1>
         <div className="slogan">we are all connected</div>
