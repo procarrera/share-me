@@ -8,5 +8,14 @@
   "env": {
     "REACT_APP_API_URL": "@react_app_api_url",
     "REACT_APP_FILESTACK_API_KEY": "@react_app_filestack_api_key"
-  }
+  },
+  "routes": [
+    {
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
+      }
+    }
+  ]
 }
