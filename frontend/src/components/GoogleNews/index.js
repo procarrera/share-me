@@ -34,18 +34,21 @@ export default function GoogleNews() {
     }
   }, [update]);
 
-  let googleapi = axios.create(
-    {
-      baseURL:
-        `https://newsapi.org/v2/everything?q=` +
-        `${keywords[0]}+${keywords[1]}` +
-        `&language=${language}` +
-        `&sortBy=relevancy` +
-        `&pageSize=100` +
-        `&apiKey=5e1805fb09874fa09e9839c546659305`,
+  let googleapi = axios.create({
+    baseURL:
+      `https://newsapi.org/v2/everything?q=` +
+      `${keywords[0]}+${keywords[1]}` +
+      `&language=${language}` +
+      `&sortBy=relevancy` +
+      `&pageSize=100` +
+      `&apiKey=5e1805fb09874fa09e9839c546659305`,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Authorization",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+      "Content-Type": "application/json;charset=UTF-8",
     },
-    { headers: { "Access-Control-Allow-Origin": "*" } }
-  );
+  });
 
   setTimeout(function () {
     if (!closed) {

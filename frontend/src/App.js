@@ -117,11 +117,11 @@ function App() {
   return (
     <div className="container">
       <Terms showTerms={showTerms} />
-      <GoogleNews />
+      <GoogleNews crossOrigin src="https://newsapi.org" />
       <header id="header">
         <h1>
-          <img src={logo} height="55" alt="Github"/>
-            .me
+          <img src={logo} height="55" alt="Github" />
+          .me
           <div id="count-block">
             <img src={logoGithub} height="16" alt="Github" />
           </div>
