@@ -11,30 +11,22 @@ export default function GoogleNews() {
   const [news, setNews] = useState({ title: "", url: "" });
   const [visible, setVisible] = useState(true);
   const [closed, setClosed] = useState(false);
-  const [keywords, setKeywords] = useState(["javascript", ""]);
-  const [language, setLanguage] = useState("en");
+  const [searchTerms, setSearchTerms] = useState("javascript");
 
   useEffect(() => {
     if (sessionStorage.getItem("keywords") != null) {
-      //console.log("existe keywords no sessionStorage");
-      var uncoded = sessionStorage
-        .getItem("keywords")
-        .split(",", 2)
-        .map((key) => key.trim());
-      var encoded = uncoded.map((key) => encodeURIComponent(key));
-      if (!encoded[1]) {
-        setKeywords([encoded[0], ""]);
-        //console.log(keywords[1]);
-      } else {
-        setKeywords(encoded);
-      }
+      console.log("existe keywords no sessionStorage");
+      var encoded = encodeURIComponent(sessionStorage.getItem("keywords"));
+      setSearchTerms(encoded);
+      console.log("searchTerms: ", searchTerms);
     } else {
-      //console.log("NAO existe keywords no sessionStorage");
-      setKeywords(["javascript", "node"]);
+      setSearchTerms("javascript");
+      console.log("NAO existe keywords no sessionStorage");
+      console.log("searchTerms: ", searchTerms);
     }
   }, [update]);
 
-  let googleapi = axios.create({
+  /* let googleapi = axios.create({
     baseURL:
       `https://newsapi.org/v2/everything?q=` +
       `${keywords[0]}+${keywords[1]}` +
@@ -42,13 +34,7 @@ export default function GoogleNews() {
       `&sortBy=relevancy` +
       `&pageSize=100` +
       `&apiKey=5e1805fb09874fa09e9839c546659305`,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Authorization",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE",
-      "Content-Type": "application/json;charset=UTF-8",
-    },
-  });
+  }); */
 
   setTimeout(function () {
     if (!closed) {
@@ -62,23 +48,25 @@ export default function GoogleNews() {
     setVisible(!visible);
   }
 
-  function handleLanguage(lang) {
-    setLanguage(lang);
-  }
-
   useEffect(() => {
     if (closed === false) {
       async function googleApi() {
-        const response = await googleapi.get();
+        const response = await axios.get("http://localhost:3333/news", {
+          params: { keywords: searchTerms },
+        });
+        //console.log(response.data.totalResults);
         if (response.data.totalResults === 0) {
-          console.log(response.data.totalResults);
-          setKeywords(["javascript", "node"]);
+          console.log("Total results === 0");
+          console.log(`total results: ${response.data.totalResults}`);
+          setSearchTerms("javascript");
           setNews({
             title: "humn, there is no relevant news at the moment :(",
             url: "",
           });
-          console.log(news);
+          //console.log(news);
         } else if (response.data.totalResults <= 100) {
+          console.log("totalResults <= 100");
+          console.log(`total results: ${response.data.totalResults}`);
           setNews(
             response.data.articles[
               Math.floor(Math.random() * (+response.data.totalResults - +0)) +
@@ -86,6 +74,8 @@ export default function GoogleNews() {
             ]
           );
         } else {
+          console.log("totalResults > 100");
+          console.log(`total results: ${response.data.totalResults}`);
           setNews(
             response.data.articles[Math.floor(Math.random() * (+100 - +0)) + +0]
           );
@@ -115,35 +105,6 @@ export default function GoogleNews() {
           </a>
         )}
       </div>
-      <div className="language">
-        <img src={BrFlag} onClick={() => handleLanguage("pt")} alt="" />
-        <img src={UsFlag} onClick={() => handleLanguage("en")} alt="" />
-      </div>
     </div>
   );
 }
-
-/*
-  return (
-    <div className="news-container">
-      <div className="news-row">
-        <a href="#" id="news-img" onClick={() => handleClose()}>
-          <img src={NewsIcon} alt="news sync" />
-        </a>
-        {visible && !closed && (
-          <a id="news-text" href={news.url}>
-            <div
-              className={`google-news scale-up-hor-right`}
-              style={{ visibility: `${visible}` }}
-            >
-              <p style={{ maxLines: 2 }}>{news.title}</p>
-              <p>
-                <strong>read more...</strong>
-              </p>
-            </div>
-          </a>
-        )}
-      </div>
-    </div>
-  );
-}*/
