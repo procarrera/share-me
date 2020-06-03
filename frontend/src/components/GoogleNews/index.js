@@ -3,8 +3,6 @@ import axios from "axios";
 
 import "./styles.css";
 import NewsIcon from "../../assets/news-api.png";
-import UsFlag from "../../assets/us.png";
-import BrFlag from "../../assets/brazil.png";
 
 export default function GoogleNews() {
   const [update, setUpdate] = useState(false);
@@ -51,9 +49,12 @@ export default function GoogleNews() {
   useEffect(() => {
     if (closed === false) {
       async function googleApi() {
-        const response = await axios.get("http://localhost:3333/news", {
-          params: { keywords: searchTerms },
-        });
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}news`,
+          {
+            params: { keywords: searchTerms },
+          }
+        );
         //console.log(response.data.totalResults);
         if (response.data.totalResults === 0) {
           console.log("Total results === 0");
