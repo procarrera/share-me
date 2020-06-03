@@ -13,14 +13,14 @@ export default function GoogleNews() {
 
   useEffect(() => {
     if (sessionStorage.getItem("keywords") != null) {
-      console.log("existe keywords no sessionStorage");
+      //console.log("existe keywords no sessionStorage");
       var encoded = encodeURIComponent(sessionStorage.getItem("keywords"));
       setSearchTerms(encoded);
-      console.log("searchTerms: ", searchTerms);
+      //console.log("searchTerms: ", searchTerms);
     } else {
       setSearchTerms("javascript");
-      console.log("NAO existe keywords no sessionStorage");
-      console.log("searchTerms: ", searchTerms);
+      //console.log("NAO existe keywords no sessionStorage");
+      //console.log("searchTerms: ", searchTerms);
     }
   }, [update]);
 
@@ -57,8 +57,8 @@ export default function GoogleNews() {
         );
         //console.log(response.data.totalResults);
         if (response.data.totalResults === 0) {
-          console.log("Total results === 0");
-          console.log(`total results: ${response.data.totalResults}`);
+          //console.log("Total results === 0");
+          //console.log(`total results: ${response.data.totalResults}`);
           setSearchTerms("javascript");
           setNews({
             title: "humn, there is no relevant news at the moment :(",
@@ -66,8 +66,8 @@ export default function GoogleNews() {
           });
           //console.log(news);
         } else if (response.data.totalResults <= 100) {
-          console.log("totalResults <= 100");
-          console.log(`total results: ${response.data.totalResults}`);
+          //console.log("totalResults <= 100");
+          //console.log(`total results: ${response.data.totalResults}`);
           setNews(
             response.data.articles[
               Math.floor(Math.random() * (+response.data.totalResults - +0)) +
@@ -75,8 +75,8 @@ export default function GoogleNews() {
             ]
           );
         } else {
-          console.log("totalResults > 100");
-          console.log(`total results: ${response.data.totalResults}`);
+          //console.log("totalResults > 100");
+          //console.log(`total results: ${response.data.totalResults}`);
           setNews(
             response.data.articles[Math.floor(Math.random() * (+100 - +0)) + +0]
           );
