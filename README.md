@@ -1,5 +1,4 @@
-<div id="status" align="center">
-        <img src="https://img.shields.io/badge/STATUS-PRODUCTION-brightgreen"/>
+![status](https://img.shields.io/badge/STATUS-PRODUCTION-brightgreen)
 </div>
 
 <br/><br/>
