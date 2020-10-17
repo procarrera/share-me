@@ -22,7 +22,7 @@
 
 ## { About }
 Share your github profile with others nerds ;) <br>
-i made this project to learn about node, mongodb, react and deploy in a realistc world using Vercel.
+i made this project to learn about node, rest API, mongodb, react and deploy in a realistc world using Vercel.
 </br>
 <a id="link" href="https://share-me.now.sh"> https://share-me.now.sh </a>
 
