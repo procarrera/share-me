@@ -21,8 +21,8 @@
 <div id="about">
 
 ## { About }
-Share your github profile with others nerds ;)
-i made this project to learn about node, mongodb, react app and its deploy in a realistc world.
+Share your github profile with others nerds ;) <br>
+i made this project to learn about node, mongodb, react and deploy in a realistc world using Vercel.
 </br>
 <a id="link" href="https://share-me.now.sh"> https://share-me.now.sh </a>
 
