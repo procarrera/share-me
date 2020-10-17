@@ -37,15 +37,11 @@ i made this project to learn about node, mongodb, react and deploy in a realistc
 <img src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
 <img src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white"/>
 
-* [React](https://reactjs.org)
-* [Typescript](https://www.typescriptlang.org/)
-* [Leaflet](https://leafletjs.com/)
-* [React Leaflet](https://react-leaflet.js.org/)
-* [React Router Dom](https://reactrouter.com/web/guides/quick-start)
-* [React Icons](https://react-icons.github.io/react-icons/)
-* [Axios](https://github.com/axios/axios)
-* [Express](https://expressjs.com/pt-br/)
-* [Typeorm](https://typeorm.io/#/)
+* [React]
+* [Javascript]
+* [Axios]
+* [Express]
+* [Cors]
 
 <img src="https://img.shields.io/badge/RESPONSIVE-YES-brightgreen"/>
 <img src="https://img.shields.io/badge/REST%20API-YES-brightgreen"/>
