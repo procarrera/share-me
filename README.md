@@ -1,11 +1,7 @@
 ![status](https://img.shields.io/badge/STATUS-PRODUCTION-brightgreen)
-</div>
 
-<br/><br/>
-<div id="header">
-        <div align="center">
-            <img id="logo" alt="Next Level Week" src="https://user-images.githubusercontent.com/53456120/96350502-73d90380-108c-11eb-8b7a-e8d37ba87a25.png" height="180px" />
-    </div>
+
+<img src="https://user-images.githubusercontent.com/53456120/96350502-73d90380-108c-11eb-8b7a-e8d37ba87a25.png" height="90px"/>
     <br/> <br/>
     <div align="center">
       <a href="#project">Project</a>&nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp;
