@@ -37,14 +37,6 @@ i made this project to learn about node, mongodb, react and deploy in a realistc
 <img src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
 <img src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white"/>
 
-`
-    "react": "^16.13.1",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mongoose": "^5.8.7"
-`
-
 <img src="https://img.shields.io/badge/RESPONSIVE-YES-brightgreen"/>
 <img src="https://img.shields.io/badge/REST%20API-YES-brightgreen"/>
 
