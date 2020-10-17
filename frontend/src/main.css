@@ -16,6 +16,6 @@ main ul {
 
 @media (min-width: 1900px) {
   main ul {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
