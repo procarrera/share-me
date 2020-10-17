@@ -87,4 +87,3 @@ LINK: <a id="link" href="https://share-me.now.sh"> https://share-me.now.sh </a>
      </p>
      
  </div>
-
